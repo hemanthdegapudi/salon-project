@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Today's Income Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-5">
+    <h2>Today's Income Breakdown ({{ today }})</h2>
+    <h4 class="mt-4">Service Income</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Service</th>
+                <th>Staff</th>
+                <th>Date</th>
+                <th>Cost</th>
+                <th>Products Purchased</th>
+                <th>PhonePe</th>
+                <th>Cash</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in services %}
+            <tr>
+                <td>{{ service.customer_name }}</td>
+                <td>{{ service.service_name }}</td>
+                <td>{{ service.staff.name }}</td>
+                <td>{{ service.date|date:"Y-m-d" }}</td>
+                <td>₹{{ service.cost }}</td>
+                <td>{{ service.products_purchased }}</td>
+                <td>₹{{ service.phonepe_amount }}</td>
+                <td>₹{{ service.cash_amount }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="8">No services today.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h4 class="mt-4">Other Income Records</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for income in incomes %}
+            <tr>
+                <td>{{ income.description }}</td>
+                <td>₹{{ income.amount }}</td>
+                <td>{{ income.date|date:"Y-m-d" }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3">No other income records today.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'dashboard' %}" class="btn btn-link mt-3">Back to Dashboard</a>
+</div>
+</body>
+</html>

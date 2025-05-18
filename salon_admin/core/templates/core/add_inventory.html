@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Inventory Item</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-5">
+    <h1>Add Inventory Item</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Item</button>
+    </form>
+    <a href="{% url 'inventory_list' %}" class="btn btn-link mt-3">Back to Inventory List</a>
+</div>
+</body>
+</html>

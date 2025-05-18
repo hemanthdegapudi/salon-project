@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ANIQ Salon - Customer Service Entry</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #232526 0%, #e0e0e0 100%);
+            min-height: 100vh;
+            color: #232526;
+        }
+        .card {
+            background: #fff;
+            border: none;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+        }
+        .form-label {
+            color: #b48a2c;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .form-control, .form-select {
+            color: #232526;
+            background: #f7f7f7;
+            border: 1.5px solid #bdbdbd;
+            border-radius: 0.7rem;
+            font-size: 1.08rem;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #b48a2c;
+            box-shadow: 0 0 0 0.15rem rgba(180,138,44,0.13);
+            background: #fff;
+            color: #232526;
+        }
+        ::placeholder {
+            color: #888 !important;
+            opacity: 1;
+        }
+        .btn-primary {
+            background: #b48a2c;
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            border-radius: 0.7rem;
+            letter-spacing: 1px;
+        }
+        .btn-primary:hover {
+            background: #232526;
+            color: #b48a2c;
+            border: 1.5px solid #b48a2c;
+        }
+        .nav-btn {
+            background: transparent;
+            color: #b48a2c;
+            border: 1.5px solid #b48a2c;
+            margin-right: 0.5rem;
+            border-radius: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: #b48a2c;
+            color: #fff;
+        }
+        .animated-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background: repeating-linear-gradient(
+                135deg,
+                #f7f7f7,
+                #f7f7f7 10px,
+                #e0e0e0 10px,
+                #e0e0e0 20px
+            );
+            animation: movebg 8s linear infinite;
+            opacity: 0.09;
+        }
+        @keyframes movebg {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+    </style>
+</head>
+<body>
+<div class="animated-bg"></div>
+<div class="container my-5">
+    <nav class="mb-4 text-center">
+        <a href="{% url 'customer_entry' %}" class="btn nav-btn active"><i class="bi bi-person-plus"></i> Customer Entry</a>
+        <a href="{% url 'dashboard' %}" class="btn nav-btn"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        <a href="{% url 'staff_list' %}" class="btn nav-btn"><i class="bi bi-people"></i> Staff Management</a>
+        <a href="{% url 'inventory_list' %}" class="btn nav-btn"><i class="bi bi-box-seam"></i> Inventory Management</a>
+    </nav>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card p-4">
+                <h2 class="mb-4 text-center" style="color:#b48a2c;">
+                    <i class="bi bi-scissors"></i> <span style="letter-spacing:2px;">ANIQ SALON</span>
+                    <div class="fs-5 fw-light mt-2" style="color:#232526;">Customer Service Entry</div>
+                </h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.customer_name.label_tag }} {{ form.customer_name }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.customer_phone.label_tag }} {{ form.customer_phone }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.service_name.label_tag }} {{ form.service_name }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.cost.label_tag }} {{ form.cost }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.staff.label_tag }} {{ form.staff }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.products_purchased.label_tag }} {{ form.products_purchased }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.salon_rating.label_tag }} {{ form.salon_rating }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.staff_rating.label_tag }} {{ form.staff_rating }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_phonepe_amount" class="form-label">PhonePe Amount</label>
+                        {{ form.phonepe_amount }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_cash_amount" class="form-label">Cash Amount</label>
+                        {{ form.cash_amount }}
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg mt-3"><i class="bi bi-save"></i> Save Entry</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
